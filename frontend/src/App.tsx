@@ -1,21 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import { HomePage } from "./domains/home/presentation/pages/HomePage";
-import { RequestPage } from "./domains/request/presentation/pages/RequestPage";
 import { RequestProvider } from "./domains/request/presentation/DependencyProvider";
+import router from "./shared/presentation/components/Router/Router";
 
 function App() {
   return (
     <RequestProvider>
-      <BrowserRouter>
-        <div className="app-container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/request" element={<RequestPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <div className="app-container">
+        <RouterProvider router={router} />
+      </div>
     </RequestProvider>
   );
 }

@@ -1,0 +1,44 @@
+@import './mixins.scss';
+
+// Primary Colors
+$primary: #005ac2;
+$primary-dim: #004fab;
+$on-primary: #f7f7ff;
+$primary-container: #d8e2ff;
+$on-primary-container: #004eaa;
+
+// Surface Colors
+$surface: #f9f9ff;
+$on-surface: #1b3353;
+$surface-container-lowest: #ffffff;
+$surface-container-low: #f0f3ff;
+$surface-container-high: #dee8ff;
+
+// Outline Variants
+$outline-variant: rgba(156, 179, 218, 0.2);
+$outline-variant-solid: #9cb3da;
+
+// Tertiary Container
+$tertiary-container: #d3ceef;
+$on-tertiary-container: #47445f;
+
+// Error Container
+$error-container: #fe8983;
+$on-error-container: #752121;
+
+// Secondary Colors
+$secondary-fixed: #e2e2e9;
+
+// Shadow
+$shadow-ambient: 0 20px 40px -12px rgba(27, 51, 83, 0.08);
+
+// Spacing and Typography
+$font-inter: 'Inter', sans-serif;
+$radius-sm: 8px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+
+@include key-value-color('color', 'color');
+@include key-value-color('bg', 'background-color');
+@include key-value-color('border', 'border-color');
