@@ -55,21 +55,12 @@
 @mixin key-value-color($name, $property) {
   $colorsList: (
     'primary': $primary,
-    'primary-dim': $primary-dim,
-    'on-primary': $on-primary,
-    'primary-container': $primary-container,
-    'on-primary-container': $on-primary-container,
+    'secondary': $secondary,
+    'tertiary': $tertiary,
+    'neutral': $neutral, 
     'surface': $surface,
     'on-surface': $on-surface,
-    'surface-container-lowest': $surface-container-lowest,
-    'surface-container-low': $surface-container-low,
-    'surface-container-high': $surface-container-high,
-    'outline-variant-solid': $outline-variant-solid,
-    'tertiary-container': $tertiary-container,
-    'on-tertiary-container': $on-tertiary-container,
-    'error-container': $error-container,
-    'on-error-container': $on-error-container,
-    'secondary-fixed': $secondary-fixed,
+    'surface-container-low': $surface-container-low
   );
 
   @each $colorName, $colorVariable in $colorsList {

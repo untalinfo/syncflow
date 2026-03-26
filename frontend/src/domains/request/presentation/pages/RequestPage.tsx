@@ -55,7 +55,7 @@ export const RequestPage: React.FC = () => {
         <button className="btn-back" onClick={() => navigate("/")}>
           🔙 Volver al Home
         </button>
-        <div className="logo">Lumina Ledger</div>
+        <div className="logo">Syncflow</div>
         <button
           className="btn-sync"
           onClick={handleSync}
