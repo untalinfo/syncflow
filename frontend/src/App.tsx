@@ -40,55 +40,62 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="header glass">
+      <header className="header">
         <div className="logo">
-          <div className="circle"></div> Syncflow
+          Lumina Ledger
         </div>
-        <button className={`btn-sync ${isSyncing ? 'syncing' : ''}`} onClick={handleSync} disabled={isSyncing || pendingCount === 0}>
-          {isSyncing ? 'Sincronizando...' : `Sincronizar Todo (${pendingCount} pendientes)`}
+        <button className="btn-sync" onClick={handleSync} disabled={isSyncing || pendingCount === 0}>
+          {/* Using a simple SVG icon for sync */}
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          {isSyncing ? 'Sincronizando...' : `Sync All (${pendingCount})`}
         </button>
       </header>
 
       <main className="main-content">
-        <section className="form-section glass">
+        <section className="form-section">
           <h2>Nueva Solicitud Offline</h2>
           <form onSubmit={handleSubmit} className="sync-form">
             <div className="form-group">
-              <label>Nombre</label>
-              <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="Ej. Actualización de datos" />
+              <label>Request Title</label>
+              <input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="e.g., Update Client Data" />
             </div>
             <div className="form-group">
-              <label>Estrategia / Tipo</label>
+              <label>Strategy / Type</label>
               <select value={form.type} onChange={e => setForm({...form, type: e.target.value})}>
-                <option value="text-transform">Transformar Texto (Mayúsculas)</option>
-                <option value="structure-modify">Modificar Estructura (Envolder en JSON)</option>
-                <option value="raw">Crudo (Sin procesar)</option>
+                <option value="text-transform">Transform Text (Uppercase)</option>
+                <option value="structure-modify">Modify Structure (JSON wrap)</option>
+                <option value="raw">Raw (Unprocessed)</option>
               </select>
             </div>
             <div className="form-group">
               <label>Payload</label>
-              <textarea value={form.payload} onChange={e => setForm({...form, payload: e.target.value})} placeholder="Contenido o datos..."></textarea>
+              <textarea value={form.payload} onChange={e => setForm({...form, payload: e.target.value})} placeholder="Content or data..."></textarea>
             </div>
-            <button type="submit" className="btn-submit">Guardar Localmente</button>
+            <button type="submit" className="btn-submit">Save Local Request</button>
           </form>
         </section>
 
         <section className="list-section">
-          <h2>Lista de Solicitudes ({requests.length})</h2>
+          <h2>Request Thread</h2>
           <div className="requests-grid">
-            {requests.length === 0 && <p className="empty-state">No hay solicitudes locales. ¡Crea una!</p>}
-            {requests.map(req => (
-              <div key={req.id} className={`request-card glass ${req.status.toLowerCase()}`}>
+            {requests.length === 0 && <p className="empty-state">No requests yet.</p>}
+            {requests.map((req, index) => (
+              <div key={req.id || index} className={`request-card ${req.status.toLowerCase()}`}>
                 <div className="card-header">
-                  <h3>{req.name}</h3>
+                  <h3>
+                    <span className={`sync-dot ${req.status.toLowerCase()}`}></span>
+                    {req.name}
+                  </h3>
                   <span className={`badge ${req.status.toLowerCase()}`}>{req.status}</span>
                 </div>
                 <div className="card-body">
-                  <p className="type-meta">Type: <code>{req.type}</code></p>
+                  <p className="type-meta"><code>{req.type}</code></p>
                   <p className="payload">{req.payload}</p>
                 </div>
                 <div className="card-footer">
-                  <small>{new Date(req.createdAt).toLocaleString()}</small>
+                  {new Date(req.createdAt).toLocaleString()}
                 </div>
               </div>
             ))}
