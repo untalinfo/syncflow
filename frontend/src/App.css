@@ -118,7 +118,7 @@ textarea {
 
 .btn-submit {
   width: 100%;
-  background: linear-gradient(180deg, var(-- primary), var(--primary-dim)); /* Use gradient as spec */
+  background: linear-gradient(180deg, var(--primary), var(--primary-dim)); /* Use gradient as spec */
   background-color: var(--primary); /* Fallback */
   color: var(--on-primary);
   padding: 0.75rem;

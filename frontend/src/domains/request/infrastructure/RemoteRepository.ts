@@ -1,5 +1,5 @@
-import type { IRemoteRequestRepository } from '../domain/IRepository';
-import type { SyncRequest } from '../domain/IRequestNode';
+import type { IRemoteRequestRepository } from '../../../domain/IRepository';
+import type { SyncRequest } from '../../../domain/IRequestNode';
 
 export class RemoteRepository implements IRemoteRequestRepository {
   private readonly baseUrl = 'http://localhost:5050/api';

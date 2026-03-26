@@ -1,12 +1,20 @@
-import type { ILocalRequestRepository, IRemoteRequestRepository } from '../domain/IRepository';
+import type { ILocalRequestRepository, IRemoteRequestRepository } from '../../../domain/IRepository';
 import type { PayloadProcessor } from '../infrastructure/Strategies';
 
 export class SyncRequestsUseCase {
+  private localRepo: ILocalRequestRepository;
+  private remoteRepo: IRemoteRequestRepository;
+  private processor: PayloadProcessor;
+
   constructor(
-    private localRepo: ILocalRequestRepository,
-    private remoteRepo: IRemoteRequestRepository,
-    private processor: PayloadProcessor
-  ) {}
+    localRepo: ILocalRequestRepository,
+    remoteRepo: IRemoteRequestRepository,
+    processor: PayloadProcessor
+  ) {
+    this.localRepo = localRepo;
+    this.remoteRepo = remoteRepo;
+    this.processor = processor;
+  }
 
   public async execute(): Promise<boolean> {
     const pendingReqs = await this.localRepo.getPending();

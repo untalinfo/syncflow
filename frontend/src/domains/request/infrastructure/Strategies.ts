@@ -1,5 +1,5 @@
-import type { IPayloadProcessorStrategy } from '../domain/PayloadProcessorStrategy';
-import type { SyncRequest } from '../domain/IRequestNode';
+import type { IPayloadProcessorStrategy } from '../../../domain/PayloadProcessorStrategy';
+import type { SyncRequest } from '../../../domain/IRequestNode';
 
 export class TextTransformStrategy implements IPayloadProcessorStrategy {
   canProcess(type: string): boolean {
