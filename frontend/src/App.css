@@ -1,18 +1,12 @@
-.app-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
-  margin-bottom: 4rem; /* 6rem major section break */
-}
+  margin-bottom: 4rem; 
 
 .logo {
-  font-size: 2.75rem; /* display-md */
+  font-size: 2.75rem; 
   font-weight: 600;
   letter-spacing: -0.02em;
   display: flex;
@@ -59,7 +53,7 @@ button {
 .main-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 6rem; /* The 24 (6rem) spacing token for major break */
+  gap: 6rem; 
   padding-bottom: 2rem;
 }
 
@@ -70,11 +64,11 @@ button {
   padding: 2rem;
   border-radius: var(--radius-lg);
   height: fit-content;
-  /* High-end no line rule - no borders! */
+  
 }
 
 .form-section h2 {
-  font-size: 1.125rem; /* title-md */
+  font-size: 1.125rem; 
   font-weight: 600;
   margin-bottom: 2rem;
 }
@@ -86,7 +80,7 @@ button {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-size: 0.6875rem; /* label-sm */
+  font-size: 0.6875rem; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--on-surface);
@@ -126,8 +120,8 @@ textarea {
     180deg,
     var(--primary),
     var(--primary-dim)
-  ); /* Use gradient as spec */
-  background-color: var(--primary); /* Fallback */
+  ); 
+  background-color: var(--primary); 
   color: var(--on-primary);
   padding: 0.75rem;
   border-radius: var(--radius-sm);
@@ -150,10 +144,9 @@ textarea {
 .requests-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* 8px vertical space */
+  gap: 0.5rem; 
 }
 
-/* Optimistic loader styling fallback */
 .request-card {
   padding: 1.5rem;
   background: var(--surface-container-low);
@@ -191,16 +184,16 @@ textarea {
 }
 
 .sync-dot.pending {
-  background-color: var(--secondary-fixed); /* Offline */
+  background-color: var(--secondary-fixed);   
 }
 
 .sync-dot.syncing {
-  background-color: var(--primary); /* Syncing */
+  background-color: var(--primary); 
   animation: pulse 1s infinite;
 }
 
 .sync-dot.processed {
-  background-color: var(--primary); /* Online */
+  background-color: var(--primary);   
 }
 
 @keyframes pulse {
@@ -246,7 +239,7 @@ textarea {
 }
 
 .card-body .payload {
-  font-size: 0.875rem; /* body-md */
+  font-size: 0.875rem;  
   color: var(--on-surface);
   white-space: pre-wrap;
   word-break: break-all;
@@ -261,9 +254,9 @@ textarea {
 }
 
 .empty-state {
-  font-size: 2.75rem; /* display-md */
+  font-size: 2.75rem;   
   letter-spacing: -0.02em;
   color: var(--on-surface);
   opacity: 0.5;
   text-align: left;
-}
+} */

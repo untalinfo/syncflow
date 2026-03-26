@@ -49,6 +49,7 @@ html {
   @extend .font-text;
   font-size: 10px;
   color: $on-surface;
+  width: 100%;
 }
 
 body {
@@ -88,9 +89,7 @@ code {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Asymmetrical margins for navigation sense of movement */
-  padding-left: 2rem;
-  padding-right: 1rem;
+  width: 100%;
 }
 
 .container-full {
