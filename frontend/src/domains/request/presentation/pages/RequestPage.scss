@@ -20,14 +20,14 @@
 
     .title-group {
       h2 {
-        font-size: 2rem;
+        font-size: 3.2rem;
         font-weight: 700;
         color: #1e293b;
         margin-bottom: 0.25rem;
       }
       p {
         color: #64748b;
-        font-size: 0.95rem;
+        font-size: 1.52rem;
       }
     }
 
@@ -61,7 +61,7 @@
     }
 
     .sync-status {
-      font-size: 0.85rem;
+      font-size: 1.36rem;
       font-weight: 600;
       padding: 0.4rem 0.9rem;
       border-radius: 2rem;
@@ -108,7 +108,7 @@
         text-align: center;
 
         p {
-          font-size: 1.1rem;
+          font-size: 1.76rem;
           font-weight: 500;
         }
       }
@@ -139,7 +139,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 1.1rem;
+            font-size: 1.76rem;
             font-weight: 600;
             color: #334155;
 
@@ -163,7 +163,7 @@
             flex-shrink: 0;
           }
           .badge {
-            font-size: 0.75rem;
+            font-size: 1.2rem;
             font-weight: 700;
             padding: 0.35rem 0.75rem;
             border-radius: 2rem;
@@ -207,14 +207,14 @@
               background: #f1f5f9;
               padding: 0.25rem 0.5rem;
               border-radius: 0.4rem;
-              font-size: 0.85rem;
+              font-size: 1.36rem;
               color: #475569;
               border: 1px solid #e2e8f0;
             }
           }
 
           .payload {
-            font-size: 0.95rem;
+            font-size: 1.52rem;
             color: #64748b;
             line-height: 1.5;
             display: -webkit-box;
@@ -231,7 +231,7 @@
 
         .card-footer {
           margin-top: auto;
-          font-size: 0.8rem;
+          font-size: 1.28rem;
           color: #94a3b8;
           display: flex;
           align-items: center;
@@ -275,14 +275,14 @@
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 2.08rem;
     font-weight: 700;
     color: #1e293b;
     margin: 0;
   }
 
   .modal-description {
-    font-size: 0.95rem;
+    font-size: 1.52rem;
     color: #64748b;
     text-align: center;
     line-height: 1.6;
@@ -304,7 +304,7 @@
       flex: 1;
       padding: 0.75rem 1rem;
       border-radius: 0.75rem;
-      font-size: 0.95rem;
+      font-size: 1.52rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;

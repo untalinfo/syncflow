@@ -48,7 +48,7 @@
       flex-wrap: wrap;
 
       .group-card__name {
-        font-size: 1.05rem;
+        font-size: 1.68rem;
         font-weight: 700;
         color: #1e293b;
         margin: 0;
@@ -59,7 +59,7 @@
 
       .composite-badge {
         font-family: 'Roboto Mono', monospace;
-        font-size: 0.78rem;
+        font-size: 1.25rem;
         background: rgba(59,130,246,0.08);
         color: $primary;
         padding: 0.2rem 0.6rem;
@@ -84,7 +84,7 @@
       gap: 0.35rem;
       padding: 0.45rem 0.85rem;
       border-radius: 0.6rem;
-      font-size: 0.82rem;
+      font-size: 1.31rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.18s;
@@ -127,7 +127,7 @@
     background: #f8fafc;
     border-radius: 0.75rem;
     color: #94a3b8;
-    font-size: 0.88rem;
+    font-size: 1.41rem;
   }
 
   .group-card__items {
@@ -174,7 +174,7 @@
 
     .group-item__name {
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 1.41rem;
       color: #334155;
       white-space: nowrap;
       overflow: hidden;
@@ -182,7 +182,7 @@
     }
 
     .group-item__type {
-      font-size: 0.75rem;
+      font-size: 1.2rem;
       background: #f1f5f9;
       color: #475569;
       padding: 0.1rem 0.4rem;
@@ -192,7 +192,7 @@
     }
 
     .group-item__badge {
-      font-size: 0.7rem;
+      font-size: 1.12rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -232,7 +232,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.78rem;
+  font-size: 1.25rem;
   color: #94a3b8;
   padding: 0.5rem 0.75rem;
   background: rgba(59,130,246,0.04);
