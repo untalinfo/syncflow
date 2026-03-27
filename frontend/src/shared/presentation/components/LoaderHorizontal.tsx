@@ -1,11 +1,11 @@
-import './LoaderHorizontal.scss'
+import "./LoaderHorizontal.scss";
 
 function Loader() {
-  return (
-    <div className="loader-wrapper">
-      <div className="loader-progress"></div>
-    </div>
-  )
+	return (
+		<div className="loader-wrapper">
+			<div className="loader-progress"></div>
+		</div>
+	);
 }
 
-export default Loader
+export default Loader;

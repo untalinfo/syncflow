@@ -1,12 +1,12 @@
-import type { SyncRequest } from '../../../../shared/application/types/IRequestNode';
+import type { SyncRequest } from "../../../../shared/application/types/IRequestNode";
 
 /**
  * Patrón Strategy: Define cómo se debe tratar el payload de una solicitud.
  */
 export interface IPayloadProcessorStrategy {
-  /** Devuelve true si esta estrategia aplica al tipo de solicitud dado */
-  canProcess(type: string): boolean;
+	/** Devuelve true si esta estrategia aplica al tipo de solicitud dado */
+	canProcess(type: string): boolean;
 
-  /** Ejecuta la transformación sobre la solicitud */
-  process(request: SyncRequest): SyncRequest;
+	/** Ejecuta la transformación sobre la solicitud */
+	process(request: SyncRequest): SyncRequest;
 }

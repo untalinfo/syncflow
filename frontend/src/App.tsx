@@ -4,13 +4,13 @@ import { RequestProvider } from "./domains/request/presentation/DependencyProvid
 import router from "./shared/presentation/components/Router/Router";
 
 function App() {
-  return (
-    <RequestProvider>
-      <div className="app-container">
-        <RouterProvider router={router} />
-      </div>
-    </RequestProvider>
-  );
+	return (
+		<RequestProvider>
+			<div className="app-container">
+				<RouterProvider router={router} />
+			</div>
+		</RequestProvider>
+	);
 }
 
 export default App;
