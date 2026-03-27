@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { RiGitPrDraftLine, RiDeleteBin6Line, RiAlertLine } from "@remixicon/react";
 import { useRequestDependencies } from "../DependencyProvider";
 import type { SyncRequest } from "../../../../domain/IRequestNode";
+import { RequestDetailModal } from "../components/RequestDetailModal/RequestDetailModal";
 import "./RequestPage.scss";
 
 interface DeleteModalProps {
@@ -50,6 +51,7 @@ export const RequestPage: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [pendingDelete, setPendingDelete] = useState<SyncRequest | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [pendingDetail, setPendingDetail] = useState<SyncRequest | null>(null);
 
   const loadData = useCallback(async () => {
     const data = await getRequests.execute();
@@ -104,6 +106,10 @@ export const RequestPage: React.FC = () => {
     if (!isDeleting) setPendingDelete(null);
   };
 
+  const handleCardClick = (req: SyncRequest) => {
+    setPendingDetail(req);
+  };
+
   // Close modal on Escape key
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -123,6 +129,12 @@ export const RequestPage: React.FC = () => {
           onConfirm={handleDeleteConfirm}
           onCancel={handleDeleteCancel}
           isDeleting={isDeleting}
+        />
+      )}
+      {pendingDetail && (
+        <RequestDetailModal
+          request={pendingDetail}
+          onClose={() => setPendingDetail(null)}
         />
       )}
 
@@ -158,6 +170,8 @@ export const RequestPage: React.FC = () => {
               <div
                 key={req.id || index}
                 className={`request-card ${req.status.toLowerCase()}`}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleCardClick(req)}
               >
                 <div className="card-header">
                   <h3>
@@ -173,7 +187,7 @@ export const RequestPage: React.FC = () => {
                     <button
                       id={`delete-btn-${req.id}`}
                       className="btn-delete"
-                      onClick={() => handleDeleteClick(req)}
+                      onClick={(e) => { e.stopPropagation(); handleDeleteClick(req); }}
                       title="Delete request"
                       aria-label={`Delete ${req.name}`}
                     >
