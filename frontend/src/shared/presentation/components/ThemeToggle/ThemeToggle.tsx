@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { RiSunLine, RiMoonLine, RiComputerLine } from "@remixicon/react";
-import { DARK_THEME, LIGHT_THEME, SYSTEM_THEME } from "../../../application/constants/theme";
+import { DARK_THEME, DATA_THEME_KEY, LIGHT_THEME, SYSTEM_THEME, THEME_KEY } from "../../../application/constants/theme";
 import "./ThemeToggle.scss";
 
 type Theme = typeof LIGHT_THEME | typeof DARK_THEME | typeof SYSTEM_THEME;
 
 export const ThemeToggle = () => {
 	const [theme, setTheme] = useState<Theme>(() => {
-		const savedTheme = localStorage.getItem("app-theme");
+		const savedTheme = localStorage.getItem(THEME_KEY);
 		if (savedTheme === LIGHT_THEME || savedTheme === DARK_THEME || savedTheme === SYSTEM_THEME) {
 			return savedTheme as Theme;
 		}
@@ -20,7 +20,7 @@ export const ThemeToggle = () => {
 			if (prev === SYSTEM_THEME) nextTheme = LIGHT_THEME;
 			else if (prev === LIGHT_THEME) nextTheme = DARK_THEME;
 			
-			localStorage.setItem("app-theme", nextTheme);
+			localStorage.setItem(THEME_KEY, nextTheme);
 			return nextTheme;
 		});
 	};
@@ -28,9 +28,9 @@ export const ThemeToggle = () => {
 	useEffect(() => {
 		const root = document.documentElement;
 		if (theme === SYSTEM_THEME) {
-			root.removeAttribute("data-theme");
+			root.removeAttribute(DATA_THEME_KEY);
 		} else {
-			root.setAttribute("data-theme", theme);
+			root.setAttribute(DATA_THEME_KEY, theme);
 		}
 	}, [theme]);
 
