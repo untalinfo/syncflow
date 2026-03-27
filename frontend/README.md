@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Syncflow Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is built using **React**, **TypeScript**, and **Vite**.
 
-Currently, two official plugins are available:
+## Available Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+In the project directory, you can run:
 
-## React Compiler
+### `pnpm run dev`
+Runs the app in the development mode.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### `pnpm run build`
+Builds the app for production to the `dist` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Expanding the ESLint configuration
+### `pnpm run preview`
+Locally preview the production build after running `pnpm run build`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Code Quality (Linting & Formatting)
+This project uses **[Biome](https://biomejs.dev/)** as a fast, all-in-one toolchain for code formatting and linting. It completely replaces Prettier and ESLint for a cleaner and faster developer experience.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Configuration can be found in `biome.json`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Available commands:
+- **`pnpm run lint`**: Checks for code issues (linting).
+- **`pnpm run lint:fix`**: Automatically fixes safe-to-apply linting issues.
+- **`pnpm run format`**: Automatically formats the codebase according to standards.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tests (Vitest & React Testing Library)
+We use **[Vitest](https://vitest.dev/)** paired with **[React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)** to run component and unit tests. Vitest was chosen because it natively understands our Vite configuration and is drop-in compatible with the Jest API.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The setup for the testing environment is located in `src/setupTests.ts` and included in `vite.config.ts`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Available commands:
+- **`pnpm run test`**: Runs the entire test suite (by default starts in watch mode).
+- **`pnpm run test:ui`**: Opens the Vitest UI dashboard in your browser to execute and analyze test runs visually.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*(Tip for Docker/CI: You can run tests without the interactive watcher mode using `pnpm run test -- --run`)*

@@ -38,9 +38,25 @@ El Frontend está organizado respetando **Clean Architecture**, dividiendo todo 
 2. **Patrón Strategy**: Empleado para el proceso dinámico de payload. Dependiendo el flag `type`, el procesador aplicará `TextTransformStrategy` o `StructureModifyStrategy` antes de que la app envíe el request al endpoint. Cumpliendo Open/Closed principle de SOLID.
 
 ## 🔧 Componentes y Tecnologías
-- **Frontend**: Vite, React 19, Vanilla CSS Estilizado con Glassmorphism, TypeScript.
+- **Frontend**: Vite, React 19, SASS (SCSS) Estilizado con Glassmorphism, TypeScript. **Herramientas**: Biomejs (Linting/Formateo), Vitest & Testing Library (Pruebas unitarias).
 - **Backend**: .NET 8 (C# 12) utilizando Minimal APIs para simplificar la lectura, Entity Framework Core y Base de datos genérica cruzada sobre **SQLite**.
 - **Orquestación**: Docker Compose.
+
+## 🧪 Pruebas y Calidad de Código en Frontend (Linter & Testing)
+
+Hemos configurado **Biome** y **Vitest** en el frontend de este proyecto para garantizar un entorno de desarrollo moderno, rápido y fiable.
+
+Para utilizarlos, puedes ejecutar los siguientes comandos posicionándote en la carpeta `/frontend`:
+
+**Biome (Remplazo de ESLint + Prettier):**
+- `pnpm run lint`: Chequea la aplicación en búsqueda de potenciales errores de código.
+- `pnpm run format`: Formatea el código automáticamente bajo los estándares y reglas más estrictos.
+
+**Vitest & React Testing Library (Pruebas Unitarias orientadas a comportamiento de DOM):**
+- `pnpm run test`: Corre toda la suite de pruebas unitarias de forma interactiva (modo watch).
+- `pnpm run test:ui`: Inicia un dashboard UI web interactivo con los resultados de tests.
+
+*(Tip: en entornos Docker puedes correr de forma interactiva ejecutando: `docker exec -it <nombre-contenedor-frontend> pnpm run test` ó integrarlo al pipeline usando el flag `--run`).*
 
 ## ⚙️ Variables necesarias
 La aplicación no requiere variables de entorno obligatorias para funcionar ya que aprovecha defaults locales listos para correr:
