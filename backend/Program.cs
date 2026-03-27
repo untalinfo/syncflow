@@ -1,14 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Syncflow.API.Infrastructure.Data;
+using Syncflow.API.Infrastructure.Repositories;
+using Syncflow.API.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar SQLite en memoria para máxima simpleza en Minimal APIs
+// Configurar SQLite en memoria para máxima simpleza
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=syncflow.db"));
+
+// Inyección de dependencias para Clean Architecture
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 
 // Habilitar CORS para que React local pueda consultar la API
 builder.Services.AddCors(options =>
@@ -16,6 +22,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
+// Agregar controladores para Clean Architecture Restructure
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -28,45 +37,6 @@ using (var scope = app.Services.CreateScope())
     db.Database.EnsureCreated();
 }
 
-// Endpoint de sincronización (Minimal API)
-app.MapPost("/api/sync", async (List<SyncRequest> payload, AppDbContext db) =>
-{
-    Console.WriteLine($"Recibidas {payload.Count} solicitudes para sincronización.");
-
-    foreach(var req in payload)
-    {
-        // Guardamos todo en SQLite de forma minimalista
-        db.SyncRequests.Add(req);
-    }
-    
-    await db.SaveChangesAsync();
-
-    return Results.Ok(new { message = "Sincronización exitosa", count = payload.Count });
-});
-
-app.MapGet("/api/requests", async (AppDbContext db) =>
-{
-    return await db.SyncRequests.ToListAsync();
-});
-
-app.MapDelete("/api/requests/{id:guid}", async (Guid id, AppDbContext db) =>
-{
-    var req = await db.SyncRequests.FindAsync(id);
-    if (req is null)
-        return Results.NotFound(new { message = $"Request {id} not found." });
-
-    db.SyncRequests.Remove(req);
-    await db.SaveChangesAsync();
-    return Results.Ok(new { message = "Request eliminada exitosamente.", id });
-});
+app.MapControllers();
 
 app.Run();
-
-// -- DOMAIN & INFRASTRUCTURE MODELS MAPPED HERE PARA SIMPLIFICAR --
-public record SyncRequest(Guid Id, string Name, string Payload, string Status, string Type, DateTime CreatedAt);
-
-public class AppDbContext : DbContext
-{
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-    public DbSet<SyncRequest> SyncRequests => Set<SyncRequest>();
-}
