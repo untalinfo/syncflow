@@ -29,19 +29,21 @@ export const RequestPage: React.FC = () => {
     };
   }, [loadData]);
 
-  const handleSync = async () => {
+  const handleSync = useCallback(async () => {
+    if (isSyncing) return;
     setIsSyncing(true);
     const success = await syncRequests.execute();
-    if (success) {
-      alert("Sincronización exitosa");
-    } else {
-      alert(
-        "Error al sincronizar. Revisa la consola o asegúrate que .NET está corriendo.",
-      );
-    }
+    window.dispatchEvent(new CustomEvent('sync-result', { detail: { success } }));
+    window.dispatchEvent(new CustomEvent('sync-completed'));
     await loadData();
     setIsSyncing(false);
-  };
+  }, [isSyncing, syncRequests, loadData]);
+
+  useEffect(() => {
+    const handleSyncEvent = () => handleSync();
+    window.addEventListener('sync-requests', handleSyncEvent);
+    return () => window.removeEventListener('sync-requests', handleSyncEvent);
+  }, [handleSync]);
 
   const pendingCount = requests.filter((r) => r.status === "Pending").length;
 
@@ -57,8 +59,11 @@ export const RequestPage: React.FC = () => {
           onClick={handleSync}
           disabled={isSyncing || pendingCount === 0}
         >
-          {isSyncing ? "Sincronizando..." : `Sync All (${pendingCount})`}
+          {isSyncing ? (
+            <><RiGitPrDraftLine size={16} className="spin" /> Syncing...</>
+          ) : `Sync All (${pendingCount})`}
         </button>
+
       </header>
 
       <main className="request-page-main">

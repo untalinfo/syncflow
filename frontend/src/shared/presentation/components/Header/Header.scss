@@ -45,7 +45,34 @@
     gap: 1rem;
   }
 
+  &__sync-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    animation: slideIn 0.25s ease;
+    white-space: nowrap;
+
+    &--success {
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+    }
+
+    &--error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
   &__icon-btn {
+
     padding: 0.5rem;
     color: #64748b;
     background: transparent;
@@ -70,6 +97,15 @@
       }
     }
 
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
     &--notify {
       position: relative;
     }
@@ -77,14 +113,22 @@
 
   &__notify-badge {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 0.5rem;
-    height: 0.5rem;
+    top: 0.25rem;
+    right: 0.25rem;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    padding: 0 0.2rem;
     background-color: #9f403d;
     border-radius: 9999px;
     border: 2px solid #ffffff;
-    box-sizing: content-box;
+    box-sizing: border-box;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 
     @media (prefers-color-scheme: dark) {
       border-color: #0f172a;
