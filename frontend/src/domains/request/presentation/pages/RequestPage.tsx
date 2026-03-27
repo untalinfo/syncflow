@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { RiGitPrDraftLine, RiDeleteBin6Line, RiAlertLine } from "@remixicon/react";
 import { useRequestDependencies } from "../DependencyProvider";
 import type { SyncRequest } from "../../../../domain/IRequestNode";
+import { Modal } from "../../../../shared/presentation/components/Modal/Modal";
 import { RequestDetailModal } from "../components/RequestDetailModal/RequestDetailModal";
 import "./RequestPage.scss";
 
@@ -13,8 +14,8 @@ interface DeleteModalProps {
 }
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ request, onConfirm, onCancel, isDeleting }) => (
-  <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div className="delete-modal">
+  <Modal onClose={onCancel} disableBackdropClose={isDeleting}>
+    <div className="delete-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div className="modal-icon-wrapper">
         <RiAlertLine size={28} />
       </div>
@@ -42,7 +43,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ request, onConfirm, onCancel,
         </button>
       </div>
     </div>
-  </div>
+  </Modal>
 );
 
 export const RequestPage: React.FC = () => {
@@ -109,15 +110,6 @@ export const RequestPage: React.FC = () => {
   const handleCardClick = (req: SyncRequest) => {
     setPendingDetail(req);
   };
-
-  // Close modal on Escape key
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleDeleteCancel();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  });
 
   const pendingCount = requests.filter((r) => r.status === "Pending").length;
 

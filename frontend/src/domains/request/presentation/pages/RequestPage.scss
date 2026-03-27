@@ -243,22 +243,7 @@
 }
 
 // ─── Delete Confirmation Modal ────────────────────────────────────────────────
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: overlayFadeIn 0.2s ease;
-
-  @keyframes overlayFadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-}
+// Note: the overlay/backdrop is provided by the shared Modal component (Modal.scss).
 
 .delete-modal {
   background: #fff;

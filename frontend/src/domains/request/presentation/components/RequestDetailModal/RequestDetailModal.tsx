@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   RiCloseLine,
   RiFileCopyLine,
@@ -10,6 +10,7 @@ import {
   RiCheckboxCircleLine,
   RiLoader4Line,
 } from "@remixicon/react";
+import { Modal } from "../../../../../shared/presentation/components/Modal/Modal";
 import type { SyncRequest } from "../../../../../domain/IRequestNode";
 import "./RequestDetailModal.scss";
 
@@ -78,15 +79,6 @@ export const RequestDetailModal: React.FC<RequestDetailModalProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
 
-  // Close on Escape key
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
   const handleCopy = () => {
     navigator.clipboard.writeText(request.payload).then(() => {
       setCopied(true);
@@ -104,16 +96,13 @@ export const RequestDetailModal: React.FC<RequestDetailModalProps> = ({
   const isOffline = request.status === "Pending" || request.status === "Failed";
 
   return (
-    <div
-      className="detail-modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="detail-modal-title"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div className="detail-modal">
+    <Modal onClose={onClose}>
+      <div
+        className="detail-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="detail-modal-title"
+      >
         {/* ── Header ── */}
         <div className="detail-modal__header">
           <div className="header-left">
@@ -232,6 +221,6 @@ export const RequestDetailModal: React.FC<RequestDetailModalProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };

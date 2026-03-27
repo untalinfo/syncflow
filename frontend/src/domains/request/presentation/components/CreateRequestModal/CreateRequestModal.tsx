@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RiCloseLine, RiSendPlaneLine } from "@remixicon/react";
 import { useRequestDependencies } from "../../DependencyProvider";
+import { Modal } from "../../../../../shared/presentation/components/Modal/Modal";
 import "./CreateRequestModal.scss";
 
 interface CreateRequestModalProps {
@@ -44,8 +45,8 @@ const CreateRequestModal: React.FC<CreateRequestModalProps> = ({
   };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+    <Modal onClose={onClose} disableBackdropClose={isSubmitting}>
+      <div className="modal-container">
         <aside className="modal-container__sidebar">
           <div className="brand">
             <div className="logo-icon">SF</div>
@@ -131,7 +132,7 @@ const CreateRequestModal: React.FC<CreateRequestModalProps> = ({
           </form>
         </section>
       </div>
-    </div>
+    </Modal>
   );
 };
 
