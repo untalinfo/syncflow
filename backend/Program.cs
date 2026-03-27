@@ -49,6 +49,17 @@ app.MapGet("/api/requests", async (AppDbContext db) =>
     return await db.SyncRequests.ToListAsync();
 });
 
+app.MapDelete("/api/requests/{id:guid}", async (Guid id, AppDbContext db) =>
+{
+    var req = await db.SyncRequests.FindAsync(id);
+    if (req is null)
+        return Results.NotFound(new { message = $"Request {id} not found." });
+
+    db.SyncRequests.Remove(req);
+    await db.SaveChangesAsync();
+    return Results.Ok(new { message = "Request eliminada exitosamente.", id });
+});
+
 app.Run();
 
 // -- DOMAIN & INFRASTRUCTURE MODELS MAPPED HERE PARA SIMPLIFICAR --

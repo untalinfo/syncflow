@@ -148,6 +148,7 @@
               height: 10px;
               border-radius: 50%;
               background: #94a3b8;
+              flex-shrink: 0;
 
               &.synced { background: #10b981; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
               &.pending { background: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
@@ -155,6 +156,12 @@
             }
           }
 
+          .card-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+          }
           .badge {
             font-size: 0.75rem;
             font-weight: 700;
@@ -166,6 +173,30 @@
             &.synced { background: #ecfdf5; color: #059669; }
             &.pending { background: #fffbeb; color: #d97706; }
             &.error { background: #fef2f2; color: #dc2626; }
+          }
+
+          .btn-delete {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 0.5rem;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+
+            &:hover {
+              background: #fef2f2;
+              border-color: #fecaca;
+              color: #dc2626;
+              transform: scale(1.1);
+            }
+
+            &:active { transform: scale(0.95); }
           }
         }
 
@@ -207,6 +238,119 @@
           gap: 0.5rem;
         }
       }
+    }
+  }
+}
+
+// ─── Delete Confirmation Modal ────────────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: overlayFadeIn 0.2s ease;
+
+  @keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+.delete-modal {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem 2rem;
+  width: min(440px, 90vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: modalSlideIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.88) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fef2f2;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  .modal-description {
+    font-size: 0.95rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+
+    strong {
+      color: #334155;
+      font-weight: 600;
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+
+    button {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:disabled { opacity: 0.6; cursor: not-allowed; }
+    }
+
+    .btn-cancel {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+
+      &:hover:not(:disabled) {
+        background: #e2e8f0;
+        color: #1e293b;
+      }
+    }
+
+    .btn-delete-confirm {
+      background: #dc2626;
+      color: #fff;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+
+      &:hover:not(:disabled) {
+        background: #b91c1c;
+        box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+        transform: translateY(-1px);
+      }
+
+      &:active:not(:disabled) { transform: translateY(0); }
     }
   }
 }

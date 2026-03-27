@@ -35,4 +35,9 @@ export class LocalStorageRepository implements ILocalRequestRepository {
   public async getPending(): Promise<SyncRequest[]> {
     return this.getStorage().filter(r => r.status === 'Pending');
   }
+
+  public async delete(id: string): Promise<void> {
+    const items = this.getStorage().filter(r => r.id !== id);
+    this.setStorage(items);
+  }
 }

@@ -17,4 +17,16 @@ export class RemoteRepository implements IRemoteRequestRepository {
        return false;
     }
   }
+
+  public async deleteById(id: string): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseUrl}/requests/${id}`, {
+        method: 'DELETE',
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("Error eliminando request en remoto:", error);
+      return false;
+    }
+  }
 }

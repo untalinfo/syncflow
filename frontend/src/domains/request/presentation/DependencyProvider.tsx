@@ -10,11 +10,13 @@ import {
 import { CreateRequestUseCase } from "../application/CreateRequestUseCase";
 import { GetRequestsUseCase } from "../application/GetRequestsUseCase";
 import { SyncRequestsUseCase } from "../application/SyncRequestsUseCase";
+import { DeleteRequestUseCase } from "../application/DeleteRequestUseCase";
 
 interface IDependencies {
   createRequest: CreateRequestUseCase;
   getRequests: GetRequestsUseCase;
   syncRequests: SyncRequestsUseCase;
+  deleteRequest: DeleteRequestUseCase;
 }
 
 const localRepo = new LocalStorageRepository();
@@ -27,6 +29,7 @@ const processor = new PayloadProcessor([
 const createReqUC = new CreateRequestUseCase(localRepo);
 const getReqUC = new GetRequestsUseCase(localRepo);
 const syncUC = new SyncRequestsUseCase(localRepo, remoteRepo, processor);
+const deleteReqUC = new DeleteRequestUseCase(localRepo, remoteRepo);
 
 const RequestContext = createContext<IDependencies | null>(null);
 
@@ -39,6 +42,7 @@ export const RequestProvider: React.FC<{ children: ReactNode }> = ({
         createRequest: createReqUC,
         getRequests: getReqUC,
         syncRequests: syncUC,
+        deleteRequest: deleteReqUC,
       }}
     >
       {children}
