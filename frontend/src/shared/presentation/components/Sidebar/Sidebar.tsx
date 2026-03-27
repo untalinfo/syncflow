@@ -2,7 +2,11 @@ import { NavLink } from "react-router-dom";
 import "./Sidebar.scss";
 import { RiGitPrDraftLine, RiHome3Line, RiQuestionLine } from "@remixicon/react";
 
-const Sidebar = () => {
+interface SidebarProps {
+  onOpenNewRequest: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onOpenNewRequest }) => {
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
@@ -52,7 +56,7 @@ const Sidebar = () => {
         </NavLink>
       </nav>
       <div className="sidebar__footer">
-        <button className="sidebar__action-btn">New Request</button>
+        <button className="sidebar__action-btn" onClick={onOpenNewRequest}>New Request</button>
         <a className="sidebar__help-link" href="#">
           <RiQuestionLine />
           <span>Help Center</span>

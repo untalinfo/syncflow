@@ -1,0 +1,179 @@
+@import "../../../../shared/application/theme/colors.scss";
+
+.request-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.4s ease-out;
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .request-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .title-group {
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+      }
+      p {
+        color: #64748b;
+        font-size: 0.95rem;
+      }
+    }
+
+    .btn-sync {
+      padding: 0.75rem 1.5rem;
+      background: $primary;
+      color: white;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+      }
+
+      &:disabled {
+        background: #94a3b8;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .request-page-main {
+    .requests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+
+      .empty-state {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5rem;
+        background: white;
+        border-radius: 1.5rem;
+        border: 2px dashed #e2e8f0;
+        color: #94a3b8;
+        gap: 1.5rem;
+        text-align: center;
+
+        p {
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+      }
+
+      .request-card {
+        background: white;
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+
+          h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #334155;
+
+            .sync-dot {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #94a3b8;
+
+              &.synced { background: #10b981; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
+              &.pending { background: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
+              &.error { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.4); }
+            }
+          }
+
+          .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+
+            &.synced { background: #ecfdf5; color: #059669; }
+            &.pending { background: #fffbeb; color: #d97706; }
+            &.error { background: #fef2f2; color: #dc2626; }
+          }
+        }
+
+        .card-body {
+          .type-meta {
+            margin-bottom: 0.75rem;
+            code {
+              background: #f1f5f9;
+              padding: 0.25rem 0.5rem;
+              border-radius: 0.4rem;
+              font-size: 0.85rem;
+              color: #475569;
+              border: 1px solid #e2e8f0;
+            }
+          }
+
+          .payload {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #f1f5f9;
+          }
+        }
+
+        .card-footer {
+          margin-top: auto;
+          font-size: 0.8rem;
+          color: #94a3b8;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+      }
+    }
+  }
+}

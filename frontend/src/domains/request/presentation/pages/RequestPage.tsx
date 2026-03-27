@@ -1,18 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { RiGitPrDraftLine } from "@remixicon/react";
 import { useRequestDependencies } from "../DependencyProvider";
 import type { SyncRequest } from "../../../../domain/IRequestNode";
+import "./RequestPage.scss";
 
 export const RequestPage: React.FC = () => {
-  const navigate = useNavigate();
-  const { createRequest, getRequests, syncRequests } = useRequestDependencies();
+  const { getRequests, syncRequests } = useRequestDependencies();
   const [requests, setRequests] = useState<SyncRequest[]>([]);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    payload: "",
-    type: "text-transform",
-  });
 
   const loadData = useCallback(async () => {
     const data = await getRequests.execute();
@@ -23,15 +18,16 @@ export const RequestPage: React.FC = () => {
     (async () => {
       await loadData();
     })();
-  }, [loadData]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name || !form.payload) return;
-    await createRequest.execute(form.name, form.payload, form.type);
-    setForm({ name: "", payload: "", type: "text-transform" });
-    await loadData();
-  };
+    const handleRequestCreated = () => {
+      loadData();
+    };
+
+    window.addEventListener("request-created", handleRequestCreated);
+    return () => {
+      window.removeEventListener("request-created", handleRequestCreated);
+    };
+  }, [loadData]);
 
   const handleSync = async () => {
     setIsSyncing(true);
@@ -50,12 +46,12 @@ export const RequestPage: React.FC = () => {
   const pendingCount = requests.filter((r) => r.status === "Pending").length;
 
   return (
-    <div className="app-container">
-      <header className="header">
-        <button className="btn-back" onClick={() => navigate("/")}>
-          🔙 Volver al Home
-        </button>
-        <div className="logo">Syncflow</div>
+    <div className="request-page-container">
+      <header className="request-page-header">
+        <div className="title-group">
+          <h2>Request Thread</h2>
+          <p>Manage and synchronize your data requests across environments.</p>
+        </div>
         <button
           className="btn-sync"
           onClick={handleSync}
@@ -64,52 +60,17 @@ export const RequestPage: React.FC = () => {
           {isSyncing ? "Sincronizando..." : `Sync All (${pendingCount})`}
         </button>
       </header>
-      <main className="main-content">
-        <section className="form-section">
-          <h2>Nueva Solicitud Offline</h2>
-          <form onSubmit={handleSubmit} className="sync-form">
-            <div className="form-group">
-              <label>Request Title</label>
-              <input
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="e.g., Update Client Data"
-              />
-            </div>
-            <div className="form-group">
-              <label>Strategy / Type</label>
-              <select
-                value={form.type}
-                onChange={(e) => setForm({ ...form, type: e.target.value })}
-              >
-                <option value="text-transform">
-                  Transform Text (Uppercase)
-                </option>
-                <option value="structure-modify">
-                  Modify Structure (JSON wrap)
-                </option>
-                <option value="raw">Raw (Unprocessed)</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Payload</label>
-              <textarea
-                value={form.payload}
-                onChange={(e) => setForm({ ...form, payload: e.target.value })}
-                placeholder="Content or data..."
-              ></textarea>
-            </div>
-            <button type="submit" className="btn-submit">
-              Save Local Request
-            </button>
-          </form>
-        </section>
+
+      <main className="request-page-main">
         <section className="list-section">
-          <h2>Request Thread</h2>
           <div className="requests-grid">
             {requests.length === 0 && (
-              <p className="empty-state">No requests yet.</p>
+              <div className="empty-state">
+                <RiGitPrDraftLine size={48} />
+                <p>
+                  No requests yet. Create your first request to get started.
+                </p>
+              </div>
             )}
             {requests.map((req, index) => (
               <div

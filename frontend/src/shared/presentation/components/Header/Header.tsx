@@ -1,7 +1,11 @@
 import { RiLoopLeftLine, RiNotification2Line } from "@remixicon/react";
 import "./Header.scss";
 
-const Header = () => {
+interface HeaderProps {
+  onOpenNewRequest: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onOpenNewRequest }) => {
   return (
     <header className="header">
       <div className="header__brand">
@@ -15,7 +19,7 @@ const Header = () => {
           <RiNotification2Line size={20} />
           <span className="header__notify-badge"></span>
         </button>
-        <button className="header__primary-btn">
+        <button className="header__primary-btn" onClick={onOpenNewRequest}>
           Create Request
         </button>
         <div className="header__avatar">

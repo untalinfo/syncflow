@@ -17,7 +17,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateToRequest }) => {
         </div>
         <h1 className="home-page__title">SyncFlow</h1>
         <p className="home-page__description">
-          Administra tus solicitudes con eficiencia. Sincroniza tus datos de forma transparente en línea y fuera de línea.
+          Manage your requests efficiently. Seamlessly synchronize your data online and offline.
         </p>
         <button
           className="btn-primary"
@@ -26,7 +26,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigateToRequest }) => {
             navigate("/request");
           }}
         >
-          Empezar ahora
+          Start now
         </button>
       </div>
     </div>
