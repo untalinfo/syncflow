@@ -6,13 +6,22 @@ import "./ThemeToggle.scss";
 type Theme = typeof LIGHT_THEME | typeof DARK_THEME | typeof SYSTEM_THEME;
 
 export const ThemeToggle = () => {
-	const [theme, setTheme] = useState<Theme>(SYSTEM_THEME);
+	const [theme, setTheme] = useState<Theme>(() => {
+		const savedTheme = localStorage.getItem("app-theme");
+		if (savedTheme === LIGHT_THEME || savedTheme === DARK_THEME || savedTheme === SYSTEM_THEME) {
+			return savedTheme as Theme;
+		}
+		return SYSTEM_THEME;
+	});
 
 	const cycleTheme = () => {
 		setTheme((prev) => {
-			if (prev === SYSTEM_THEME) return LIGHT_THEME;
-			if (prev === LIGHT_THEME) return DARK_THEME;
-			return SYSTEM_THEME;
+			let nextTheme: Theme = SYSTEM_THEME;
+			if (prev === SYSTEM_THEME) nextTheme = LIGHT_THEME;
+			else if (prev === LIGHT_THEME) nextTheme = DARK_THEME;
+			
+			localStorage.setItem("app-theme", nextTheme);
+			return nextTheme;
 		});
 	};
 
