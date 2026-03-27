@@ -1,4 +1,4 @@
-import type { ILocalRequestRepository, IRemoteRequestRepository } from '../../../domain/IRepository';
+import type { ILocalRequestRepository, IRemoteRequestRepository } from './types/IRepository';
 
 export class DeleteRequestUseCase {
   private localRepo: ILocalRequestRepository;

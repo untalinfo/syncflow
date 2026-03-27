@@ -1,5 +1,5 @@
-import type { IRemoteRequestRepository } from '../../../domain/IRepository';
-import type { SyncRequest } from '../../../domain/IRequestNode';
+import type { IRemoteRequestRepository } from '../application/types/IRepository';
+import type { SyncRequest } from '../../../shared/application/types/IRequestNode';
 
 export class RemoteRepository implements IRemoteRequestRepository {
   private readonly baseUrl = 'http://localhost:5050/api';
@@ -13,8 +13,8 @@ export class RemoteRepository implements IRemoteRequestRepository {
       });
       return response.ok;
     } catch (error) {
-       console.error("Error sincronizando falló:", error);
-       return false;
+      console.error("Error sincronizando falló:", error);
+      return false;
     }
   }
 

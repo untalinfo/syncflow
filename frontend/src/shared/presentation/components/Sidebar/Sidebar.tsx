@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./Sidebar.scss";
-import { RiGitPrDraftLine, RiHome3Line, RiQuestionLine } from "@remixicon/react";
+import { RiGitPrDraftLine, RiHome3Line, RiQuestionLine, RiFolderSharedLine } from "@remixicon/react";
 
 interface SidebarProps {
   onOpenNewRequest: () => void;
@@ -51,6 +51,22 @@ const Sidebar: React.FC<SidebarProps> = ({ onOpenNewRequest }) => {
                 <RiGitPrDraftLine size={20} />
               </span>
               <span>Requests</span>
+            </>
+          )}
+        </NavLink>
+        <NavLink
+          to="/groups"
+          className={({ isActive }) => `sidebar__nav-item ${isActive ? "sidebar__nav-item--active" : ""}`}
+        >
+          {({ isActive }) => (
+            <>
+              <span
+                className="material-symbols-outlined"
+                style={isActive ? { fontVariationSettings: "'FILL' 1" } : {}}
+              >
+                <RiFolderSharedLine size={20} />
+              </span>
+              <span>Groups</span>
             </>
           )}
         </NavLink>

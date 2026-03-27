@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { RiGitPrDraftLine, RiDeleteBin6Line, RiAlertLine } from "@remixicon/react";
 import { useRequestDependencies } from "../DependencyProvider";
-import type { SyncRequest } from "../../../../domain/IRequestNode";
+import type { SyncRequest } from "../../../../shared/application/types/IRequestNode";
 import { Modal } from "../../../../shared/presentation/components/Modal/Modal";
 import { RequestDetailModal } from "../components/RequestDetailModal/RequestDetailModal";
 import "./RequestPage.scss";

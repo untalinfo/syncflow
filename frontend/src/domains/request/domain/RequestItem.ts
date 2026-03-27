@@ -1,4 +1,4 @@
-import type { SyncRequest, Status } from './IRequestNode';
+import type { SyncRequest, Status } from '../../../shared/application/types/IRequestNode';
 
 /**
  * Patrón Composite: Representa una Solicitud Individual (Hoja/Leaf)

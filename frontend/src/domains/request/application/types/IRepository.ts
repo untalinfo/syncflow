@@ -1,4 +1,4 @@
-import type { SyncRequest } from './IRequestNode';
+import type { SyncRequest } from '../../../../shared/application/types/IRequestNode';
 
 export interface ILocalRequestRepository {
   save(request: SyncRequest): Promise<void>;

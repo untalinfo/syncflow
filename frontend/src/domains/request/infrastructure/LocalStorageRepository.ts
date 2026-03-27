@@ -1,5 +1,5 @@
-import type { ILocalRequestRepository } from '../../../domain/IRepository';
-import type { SyncRequest } from '../../../domain/IRequestNode';
+import type { ILocalRequestRepository } from '../application/types/IRepository';
+import type { SyncRequest } from '../../../shared/application/types/IRequestNode';
 
 const STORAGE_KEY = 'syncflow_requests';
 

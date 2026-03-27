@@ -1,6 +1,6 @@
-import type { ILocalRequestRepository } from '../../../domain/IRepository';
-import type { SyncRequest } from '../../../domain/IRequestNode';
-import { RequestItem } from '../../../domain/RequestItem';
+import type { ILocalRequestRepository } from './types/IRepository';
+import type { SyncRequest } from '../../../shared/application/types/IRequestNode';
+import { RequestItem } from '../domain/RequestItem';
 
 export class CreateRequestUseCase {
   private localRepo: ILocalRequestRepository;

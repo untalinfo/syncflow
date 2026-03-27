@@ -1,4 +1,4 @@
-import type { ILocalRequestRepository, IRemoteRequestRepository } from '../../../domain/IRepository';
+import type { ILocalRequestRepository, IRemoteRequestRepository } from './types/IRepository';
 import type { PayloadProcessor } from '../infrastructure/Strategies';
 
 export class SyncRequestsUseCase {

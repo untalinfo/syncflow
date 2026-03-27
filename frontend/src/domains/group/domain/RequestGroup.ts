@@ -1,4 +1,4 @@
-import type { IRequestNode, SyncRequest } from './IRequestNode';
+import type { IRequestNode, SyncRequest } from '../../../shared/application/types/IRequestNode';
 
 /**
  * Patrón Composite: Representa una agrupación que puede contener tanto 

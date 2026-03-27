@@ -1,0 +1,147 @@
+@import "../../../../../shared/application/theme/colors.scss";
+
+// ─── Page shell ───────────────────────────────────────────────────────────────
+.groups-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  animation: fadeUp 0.35s ease-out;
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.groups-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+
+  .groups-page__title-area {
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.3rem;
+    }
+    p {
+      color: #64748b;
+      font-size: 0.95rem;
+      max-width: 540px;
+      line-height: 1.6;
+      code {
+        background: #f1f5f9;
+        padding: 0.1rem 0.4rem;
+        border-radius: 0.3rem;
+        font-size: 0.85em;
+        color: #3b82f6;
+      }
+    }
+  }
+}
+
+// ─── Create form ─────────────────────────────────────────────────────────────
+.groups-page__create-form {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-shrink: 0;
+
+  .groups-page__input {
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.75rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #1e293b;
+    background: #f8fafc;
+    width: 220px;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    &::placeholder { color: #94a3b8; }
+  }
+
+  .groups-page__create-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.25rem;
+    background: $primary;
+    color: #fff;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.2);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(59,130,246,0.3);
+    }
+    &:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
+  }
+}
+
+// ─── Pattern banner ───────────────────────────────────────────────────────────
+.pattern-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(59,130,246,0.05);
+  border: 1px solid rgba(59,130,246,0.18);
+  border-radius: 0.9rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  color: #1e293b;
+  line-height: 1.6;
+
+  svg { flex-shrink: 0; color: $primary; margin-top: 2px; }
+
+  code {
+    background: rgba(59,130,246,0.1);
+    color: $primary;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.3rem;
+    font-size: 0.85em;
+  }
+}
+
+// ─── Empty state ──────────────────────────────────────────────────────────────
+.groups-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 5rem 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  border: 2px dashed #e2e8f0;
+  color: #94a3b8;
+  text-align: center;
+
+  h3 { font-size: 1.2rem; font-weight: 600; color: #64748b; margin: 0; }
+  p  { margin: 0; font-size: 0.95rem; }
+}
+
+// ─── Groups list ─────────────────────────────────────────────────────────────
+.groups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}

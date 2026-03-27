@@ -11,7 +11,7 @@ import {
   RiLoader4Line,
 } from "@remixicon/react";
 import { Modal } from "../../../../../shared/presentation/components/Modal/Modal";
-import type { SyncRequest } from "../../../../../domain/IRequestNode";
+import type { SyncRequest } from "../../../../../shared/application/types/IRequestNode";
 import "./RequestDetailModal.scss";
 
 interface RequestDetailModalProps {
@@ -67,8 +67,8 @@ function buildTimeline(req: SyncRequest): TimelineEvent[] {
 
 const TimelineDotIcon: React.FC<{ type: TimelineEventType }> = ({ type }) => {
   const size = 16;
-  if (type === "created")   return <RiAddCircleLine size={size} />;
-  if (type === "pending")   return <RiLoader4Line size={size} />;
+  if (type === "created") return <RiAddCircleLine size={size} />;
+  if (type === "pending") return <RiLoader4Line size={size} />;
   if (type === "processed") return <RiCheckboxCircleLine size={size} />;
   return <RiErrorWarningLine size={size} />;
 };

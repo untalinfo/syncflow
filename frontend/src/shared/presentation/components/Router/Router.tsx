@@ -18,6 +18,13 @@ const RequestPage = Loadable(
     ),
   ),
 );
+const GroupsPage = Loadable(
+  lazy(() =>
+    import("../../../../domains/group/presentation/pages/GroupsPage/GroupsPage").then(
+      (module) => ({ default: module.GroupsPage }),
+    ),
+  ),
+);
 
 const router = createBrowserRouter([
   {
@@ -32,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/request",
         element: <RequestPage />,
+      },
+      {
+        path: "/groups",
+        element: <GroupsPage />,
       },
     ],
   },
