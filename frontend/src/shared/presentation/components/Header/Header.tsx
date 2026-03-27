@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
 import {
 	RiLoopLeftLine,
 	RiNotification2Line,
-	RiSunLine,
-	RiMoonLine,
-	RiComputerLine,
 } from "@remixicon/react";
 import "./Header.scss";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 interface HeaderProps {
 	onOpenNewRequest: () => void;
@@ -14,47 +11,13 @@ interface HeaderProps {
 	syncStatus?: "idle" | "success" | "error";
 }
 
-type Theme = "light" | "dark" | "system";
-
 const Header: React.FC<HeaderProps> = ({
 	onOpenNewRequest,
 	pendingCount = 0,
 	syncStatus = "idle",
 }) => {
-	const [theme, setTheme] = useState<Theme>("system");
-
 	const handleSync = () => {
 		window.dispatchEvent(new CustomEvent("sync-requests"));
-	};
-
-	const cycleTheme = () => {
-		setTheme((prev) => {
-			if (prev === "system") return "light";
-			if (prev === "light") return "dark";
-			return "system";
-		});
-	};
-
-	useEffect(() => {
-		const root = document.documentElement;
-		if (theme === "system") {
-			root.removeAttribute("data-theme");
-			// You can optionally add logic to listen to system preference changes here
-		} else {
-			root.setAttribute("data-theme", theme);
-		}
-	}, [theme]);
-
-	const getThemeIcon = () => {
-		switch (theme) {
-			case "light":
-				return <RiSunLine size={20} />;
-			case "dark":
-				return <RiMoonLine size={20} />;
-			case "system":
-			default:
-				return <RiComputerLine size={20} />;
-		}
 	};
 
 	return (
@@ -98,14 +61,7 @@ const Header: React.FC<HeaderProps> = ({
 				>
 					Create Request
 				</button>
-				<button
-					type="button"
-					className="header__icon-btn"
-					onClick={cycleTheme}
-					title={`Switch theme (current: ${theme})`}
-				>
-					{getThemeIcon()}
-				</button>
+				<ThemeToggle />
 			</div>
 		</header>
 	);

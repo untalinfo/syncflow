@@ -1,0 +1,37 @@
+@import '../../../application/theme/mixins.scss';
+
+.theme-toggle-btn {
+  padding: 0.5rem;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: rgba(226, 232, 240, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include dark-mode {
+    &:hover {
+      background-color: rgba(30, 41, 59, 0.5);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
