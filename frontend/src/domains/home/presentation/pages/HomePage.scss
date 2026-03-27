@@ -38,7 +38,7 @@
     padding: 2.5rem;
     border-radius: 50%;
     
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       background: rgba($primary, 0.1);
     }
   }
@@ -51,7 +51,7 @@
     letter-spacing: -0.04em;
     @extend .font-text;
 
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       color: white;
     }
   }
@@ -63,7 +63,7 @@
     margin-bottom: 3.5rem;
     @extend .font-text;
 
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       color: rgba(255, 255, 255, 0.7);
     }
   }
@@ -92,7 +92,7 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
+  @include dark-mode {
     background: #1e293b;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   }

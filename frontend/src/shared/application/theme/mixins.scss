@@ -79,3 +79,14 @@
     @include shade-value($name, $colorName, $property, $colorVariable);
   }
 }
+
+@mixin dark-mode {
+  :root[data-theme="dark"] & {
+    @content;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      @content;
+    }
+  }
+}

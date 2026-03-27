@@ -1,3 +1,4 @@
+@import '../../../application/theme/mixins.scss';
 .header {
   background-color: rgba(248, 250, 252, 0.8);
   backdrop-filter: blur(12px);
@@ -16,7 +17,7 @@
   height: 6.4rem;
   box-sizing: border-box;
   
-  @media (prefers-color-scheme: dark) {
+  @include dark-mode {
     background-color: rgba(15, 23, 42, 0.5);
     box-shadow: none;
   }
@@ -34,7 +35,7 @@
     letter-spacing: -0.05em;
     color: #0f172a;
 
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       color: #f8fafc;
     }
   }
@@ -91,7 +92,7 @@
       transform: scale(0.95);
     }
 
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       &:hover {
         background-color: rgba(30, 41, 59, 0.5);
       }
@@ -130,7 +131,7 @@
     justify-content: center;
     line-height: 1;
 
-    @media (prefers-color-scheme: dark) {
+    @include dark-mode {
       border-color: #0f172a;
     }
   }
@@ -152,20 +153,6 @@
     
     &:active {
       transform: scale(0.95);
-    }
-  }
-
-  &__avatar {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 9999px;
-    overflow: hidden;
-    background-color: #e2e8f0;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
   }
 }
